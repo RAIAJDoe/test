@@ -18,7 +18,6 @@
 #	* Rego Iteration: https://www.openpolicyagent.org/docs/latest/#iteration
 
 package app.rbac
-
 # import data.utils
 
 # By default, deny requests
