@@ -1,12 +1,12 @@
-# AWS ECS Cluster Access Denial Policy
-# Description: Denies all users access to view ECS clusters
+# AWS ECS Cluster Access Allow Policy
+# Description: Allows all users access to view ECS clusters
 # Phase: pre
 # Connector: aws
 
-package aws.ecs.cluster.deny
+package aws.ecs.cluster.allow
 
-# Deny access to ECS cluster operations
-deny[msg] {
+# Allow access to ECS cluster operations
+allow[msg] {
     # Check if this is an ECS service call
     input.service == "ecs"
     
@@ -25,22 +25,22 @@ deny[msg] {
     
     cluster_actions[input.action]
     
-    msg := sprintf("Access denied: ECS cluster operation '%s' is not allowed for any user", [input.action])
+    msg := sprintf("Access allowed: ECS cluster operation '%s' is permitted", [input.action])
 }
 
-# Deny access to any ECS resource that contains cluster ARN
-deny[msg] {
+# Allow access to any ECS resource that contains cluster ARN
+allow[msg] {
     input.service == "ecs"
     
     # Check if any resource ARN contains cluster
     some resource in input.resources
     contains(resource, ":cluster/")
     
-    msg := sprintf("Access denied: Cannot access ECS cluster resource '%s'", [resource])
+    msg := sprintf("Access allowed: ECS cluster resource '%s' is accessible", [resource])
 }
 
-# Additional protection - deny if cluster name is specified in parameters
-deny[msg] {
+# Allow if cluster name is specified in parameters
+allow[msg] {
     input.service == "ecs"
     
     # Check common parameter names that might contain cluster references
@@ -49,5 +49,5 @@ deny[msg] {
     some param in cluster_params
     input.parameters[param]
     
-    msg := sprintf("Access denied: ECS cluster parameter '%s' detected in request", [param])
+    msg := sprintf("Access allowed: ECS cluster parameter '%s' is permitted", [param])
 }
