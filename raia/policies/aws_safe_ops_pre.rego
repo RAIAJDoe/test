@@ -1,4 +1,4 @@
-# Role-based Access Control (RBAC)
+# New Role-based Access Control (RBAC)
 # --------------------------------
 #
 # This example defines an RBAC model for a Pet Store API. The Pet Store API allows
@@ -8,7 +8,6 @@
 # roles are granted the ability to perform some action(s) on some type of resource.
 #
 # This example shows how to:
-#
 #	* Define an RBAC model in Rego that interprets role mappings represented in JSON.
 #	* Iterate/search across JSON data structures (e.g., role mappings)
 #
