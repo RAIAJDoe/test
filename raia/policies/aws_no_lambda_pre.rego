@@ -6,7 +6,7 @@ import rego.v1
 # Policy metadata
 policy_name := "Lambda Logs Access Denial"
 description := "Deny users access to any Lambda-related logs and outputs"
-phase := "post"
+phase := "pre"
 
 # Main decision rule
 decision := "deny" if {
