@@ -5,6 +5,8 @@
 
 package aws.ecs.cluster.deny
 
+tool_cred_guid := "1ff2596e-e665-4e37-806d-c1701270fba6"
+
 # Deny access to ECS cluster operations
 deny[msg] {
     # Check if this is an ECS service call
