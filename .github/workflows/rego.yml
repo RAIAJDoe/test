@@ -1,0 +1,33 @@
+name: Sync Policies
+
+on:
+  push:
+    branches: [ rego ]
+    paths: [ 'raia/policies/**/*.rego' ]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install and sync policies
+      env:
+        BACKEND_URL: ${{ secrets.RAIA_BACKEND_URL }}
+        TOKEN_NAME: ${{ secrets.RAIA_TOKEN_NAME }}
+        TOKEN_SECRET: ${{ secrets.RAIA_TOKEN_SECRET }}
+        RAIA_PROJECT_GUID: ${{ secrets.RAIA_PROJECT_GUID }}
+      run: |
+        pip install git+https://github.com/raia-live/raia-cli.git
+        raia-cli policies sync \
+          --repo ${{ github.server_url }}/${{ github.repository }} \
+          --branch ${{ github.ref_name }} \
+          --path /raia/policies/ \
+          --auto-assign
