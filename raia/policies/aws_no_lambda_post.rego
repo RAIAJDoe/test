@@ -8,6 +8,7 @@ policy_name := "Lambda Logs Access Denial"
 description := "Deny users access to any Lambda-related logs and outputs"
 phase := "post"
 
+
 # Main decision rule
 decision := "deny" if {
     is_lambda_related_content
