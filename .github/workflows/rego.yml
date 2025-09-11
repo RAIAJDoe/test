@@ -32,5 +32,5 @@ jobs:
           --repo ${{ github.server_url }}/${{ github.repository }} \
           --branch ${{ github.ref_name }} \
           --path /raia/policies/ \
-          --commit ${{ env.COMMIT_SHA }}"
+          --commit ${{ env.COMMIT_SHA }}
           --auto-assignment
