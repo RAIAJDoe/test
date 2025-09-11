@@ -17,8 +17,6 @@ EXTENSION_TO_LANGUAGE_MAP = {
     ".kt": "kotlin",
     ".m": "objective-c",
 }
-
-
 def load_environment_variables(file_path: str) -> None:
     if os.path.exists(file_path):
         with open(file_path) as f:
