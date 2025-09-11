@@ -12,7 +12,6 @@
 #	* Iterate/search across JSON data structures (e.g., role mappings)
 #
 # For more information see:
-#
 #	* Rego comparison to other systems: https://www.openpolicyagent.org/docs/latest/comparison-to-other-systems/
 #	* Rego Iteration: https://www.openpolicyagent.org/docs/latest/#iteration
 
