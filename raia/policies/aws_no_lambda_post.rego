@@ -11,7 +11,6 @@ phase := "post"
 decision := "deny" if {
     is_lambda_related_content
 }
-
 decision := "allow" if {
     not is_lambda_related_content
 }
