@@ -1,8 +1,3 @@
-# AWS ECS Cluster Access Denial Policy
-# Description: Denies all users access to view ECS clusters
-# Phase: pre
-# Connector: aws
-
 package aws.ecs.cluster.deny
 
 tool_cred_guid := "a4687d1c-b226-4618-a256-c943275fafd8"
