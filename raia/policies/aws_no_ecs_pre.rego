@@ -5,7 +5,7 @@
 
 package aws.ecs.cluster.deny
 
-tool_cred_guid := "9a6a7640-6337-470a-ac37-e68b183191f2"
+tool_cred_guid := "1ff2596e-e665-4e37-806d-c1701270fba6"
 
 # Deny access to ECS cluster operations
 deny[msg] {
