@@ -1,13 +1,13 @@
 package aws_logs_block_eu_west_1_pre
 
-# Policy to block access to CloudWatch Logs in eu-west-1 region
-# This policy denies any logs-related actions in the eu-west-1 region
+# Policy to block access to CloudWatch Logs in us-west-1 region
+# This policy denies any logs-related actions in the us-west-1 region
 
 import rego.v1
 tool_cred_guid := "032b3350-657d-429c-95ee-e55e6bd4a950"
 
 # Configuration
-BLOCKED_REGION := "eu-west-1"
+BLOCKED_REGION := "us-west-1"
 BLOCKED_ACTIONS := [
     "logs:CreateLogGroup",
     "logs:DeleteLogGroup", 
@@ -41,7 +41,7 @@ decision := {
 # Allow by default unless logs action in blocked region
 default allowed := true
 
-# Deny if trying to access logs in eu-west-1
+# Deny if trying to access logs in us-west-1
 allowed := false if {
     is_logs_action_in_blocked_region
 }
@@ -52,7 +52,7 @@ is_logs_action_in_blocked_region if {
     action := input.action
     action in BLOCKED_ACTIONS
     
-    # Check if region is eu-west-1
+    # Check if region is us-west-1
     region := get_region_from_input
     region == BLOCKED_REGION
 }
@@ -70,13 +70,13 @@ get_region_from_input := region if {
 } else := region if {
     # From endpoint URL
     endpoint := input.endpoint
-    contains(endpoint, "eu-west-1")
-    region := "eu-west-1"
+    contains(endpoint, "us-west-1")
+    region := "us-west-1"
 } else := region if {
     # From service URL pattern
     service_url := input.service_url
-    regex.match(`.*\.eu-west-1\.amazonaws\.com.*`, service_url)
-    region := "eu-west-1"
+    regex.match(`.*\.us-west-1\.amazonaws\.com.*`, service_url)
+    region := "us-west-1"
 } else := "" {
     # Default if no region found
     true
