@@ -13,7 +13,6 @@ deny[msg] {
         "CreateCluster",
         "DeleteCluster",
         "UpdateCluster",
-        "PutClusterCapacityProviders",
         "TagResource",
         "UntagResource",
         "ListTagsForResource"
