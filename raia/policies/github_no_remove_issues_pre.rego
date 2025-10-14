@@ -6,6 +6,7 @@ import rego.v1
 default allow := true
 default allow_redacted := false
 
+tool_cred_guid := "3d7e3ff0-ab02-4c9c-9fc3-8ec63f785dfa"
 # Block issue deletion operations
 deny contains msg if {
     # Check if this is a GitHub API call
